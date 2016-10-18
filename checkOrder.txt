@@ -1,0 +1,22 @@
+
+function Trig_CheckOrder_Actions takes nothing returns nothing
+    local integer h = GetHandleId(GetTriggerEventId())
+    local integer ord = GetIssuedOrderId()
+    if h==38 then
+        call DisplayTextToPlayer(GetLocalPlayer(), 0.00, 0.00, "instant " + I2S(ord) + ", " + OrderId2StringBJ(ord))
+    elseif h==39 then
+        call DisplayTextToPlayer(GetLocalPlayer(), 0.00, 0.00, "point " + I2S(ord) + ", " + OrderId2StringBJ(ord))
+    elseif h==40 then
+        call DisplayTextToPlayer(GetLocalPlayer(), 0.00, 0.00, "target " + I2S(ord) + ", " + OrderId2StringBJ(ord))
+    endif
+endfunction
+
+//===========================================================================
+function InitTrig_CheckOrder takes nothing returns nothing
+    set gg_trg_CheckOrder = CreateTrigger(  )
+    call TriggerRegisterAnyUnitEventBJ( gg_trg_CheckOrder, EVENT_PLAYER_UNIT_ISSUED_ORDER )
+    call TriggerRegisterAnyUnitEventBJ( gg_trg_CheckOrder, EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER )
+    call TriggerRegisterAnyUnitEventBJ( gg_trg_CheckOrder, EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER )
+    call TriggerAddAction( gg_trg_CheckOrder, function Trig_CheckOrder_Actions )
+endfunction
+
