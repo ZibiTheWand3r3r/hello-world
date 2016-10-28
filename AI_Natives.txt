@@ -1,0 +1,22 @@
+
+native GetPlayerUnitTypeCount takes player p, integer unitid returns integer
+//counts only alive units/heroes/structures
+//counts also units during training; also counts buildings under construction
+//counts building during upgrade (like upgrade town hall-->keep in progress, counts as keep)
+//counts also heroes during revieving
+
+
+native GetBuilding takes player p returns unit
+//Get the last constructed or pre-placed building for the given player (not works for upgraded building)
+
+native GetUnitCountDone takes integer unitid returns integer //CRASH!
+native Sleep                takes real seconds                          returns nothing //NOT working
+native UnitInvis            takes unit id                               returns boolean //CRASH
+native GetAiPlayer          takes nothing                               returns integer //CRASH
+
+native GetUnitGoldCost      takes integer unitid                        returns integer
+native GetUnitWoodCost      takes integer unitid                        returns integer
+native GetUnitBuildTime     takes integer unitid                        returns integer
+// these natives will copy values from Object Editor fields "Gold Cost", "Lumber Cost", "Build Time"
+// do NOT use for heroes! *it will crash a game*
+//----------------------------------------------------------------
